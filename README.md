@@ -3,7 +3,7 @@ Performance Evaluation of Triangle Counting Algorithms on GPUs
 
 ## Quick Start
 
-### **Build the Project**
+### Build the Project
 
 To compile the project, navigate to the `build` directory and run the following commands:
 
@@ -13,7 +13,8 @@ cmake ..
 make -j
 ```
 
-**Run a Test**
+### Run a Test
+
 Execute the following command to test the default graph Com-Dblp:
 
 ```
@@ -38,8 +39,9 @@ If you see output similar to the following, the setup is complete. Congratulatio
 [2025-01-14 16:31:44.801] [info] Triangle count 2224385
 ```
 
+## Test more graphs
 
-**Download more graphs from SNAP**
+### Download graphs from SNAP
 To test with more graphs, download graphs from the SNAP Repository(https://snap.stanford.edu/data/):
 
 ```
@@ -53,7 +55,7 @@ mkdir data/snap_dataset/Com-Orkut/
 wget -P ../../data/snap_dataset/Com-Orkut/   https://snap.stanford.edu/data/bigdata/communities/com-orkut.ungraph.txt.gz
 gzip -d ../../data/snap_dataset/Com-Orkut/com-orkut.ungraph.txt.gz
 ```
-
+### Convert graph format
 Downloaded files are in text format and must be converted to CSR (Compressed Sparse Row) format using preprocessing tools:
 ```
 mkdir data/csr_dataset/Com-Orkut/
@@ -62,6 +64,10 @@ g++ SNAP2CSR.cpp -o SNAP2CSR
 ./SNAP2CSR /{your project path}/data/snap_dataset/Com-Orkut/com-orkut.ungraph.txt \
 /{your project path}/data/csr_dataset/Com-Orkut/
 ```
+
+### Change the test graph
+You can change the datasets_1 configuration in `config/config.ini` and run `./main` in `build` to test other graphs.
+
 
 ## Performance
 
