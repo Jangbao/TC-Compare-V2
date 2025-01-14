@@ -1,0 +1,10 @@
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/gsh-2015-host/gsh-2015-host  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/gsh-2015-host/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/it-2004/it-2004  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/it-2004/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/sk-2005/sk-2005  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/sk-2005/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/uk-2014/uk-2014  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/uk-2014/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/enwiki-2024/enwiki-2024  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/enwiki-2024/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/webbase-2001/webbase-2001  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/webbase-2001/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/gsh-2015-tpd/gsh-2015-tpd  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/gsh-2015-tpd/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/uk-2005/uk-2005  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/uk-2005/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/imdb-2021/imdb-2021  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/imdb-2021/edges.bin
+# java -jar graph-1.0-SNAPSHOT.jar  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/web_dataset/hollywood-2011/hollywood-2011  /home/LiJB/cuda_project/TC-compare-V100/dataset_app/g500_dataset/hollywood-2011/edges.bin
