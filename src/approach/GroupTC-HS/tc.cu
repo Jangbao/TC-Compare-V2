@@ -399,8 +399,12 @@ void tc::approach::GroupTC_HS::gpu_run(INIReader &config, GPUGraph &gpu_graph, s
     // HRR(cudaMemcpy(counter, GLOBAL_COUNT, sizeof(unsigned long long) * 10, cudaMemcpyDeviceToHost));
 
     // algorithm, dataset, iteration_count, avg compute time/s,
-    spdlog::get("GroupTC-HS_file_logger")
-        ->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "GroupTC-HS", gpu_graph.input_dir, count, iteration_count, total_kernel_use / iteration_count);
+    auto logger = spdlog::get("GroupTC-HS_file_logger");
+    if (logger) {
+        logger->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "GroupTC-HS", gpu_graph.input_dir, count, iteration_count, total_kernel_use / iteration_count);
+    } else {
+        spdlog::warn("Logger 'GroupTC-HS_file_logger' is not initialized.");
+    }
 
     // spdlog::get("GroupTC-HS_file_logger")
     // ->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "GroupTC-HS", gpu_graph.input_dir, counter[0], iteration_count, total_kernel_use /

@@ -185,8 +185,12 @@ void tc::approach::GroupTC::gpu_run(INIReader& config, GPUGraph& gpu_graph, std:
     }
 
     // algorithm, dataset, iteration_count, avg compute time/s,
-    spdlog::get("GroupTC_file_logger")
-        ->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "GroupTC", gpu_graph.input_dir, count, iteration_count, total_kernel_use / iteration_count);
+    auto logger = spdlog::get("GroupTC_file_logger");
+    if (logger) {
+        logger->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "GroupTC", gpu_graph.input_dir, count, iteration_count, total_kernel_use / iteration_count);
+    } else {
+        spdlog::warn("Logger 'GroupTC_file_logger' is not initialized.");
+    }
 
     spdlog::info("Iter {0}, avg kernel use {1:.6f} s", iteration_count, total_kernel_use / iteration_count);
     spdlog::info("Triangle count {:d}", count);

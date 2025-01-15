@@ -61,6 +61,10 @@ int main(int argc, char** argv) {
 
         // read dataset
         CPUGraph cpu_graph(input_file);
+        if (cpu_graph.vertex_count <= 0 || cpu_graph.edge_count <= 0) {
+            spdlog::warn("Invalid graph data, process next graph ...");
+            continue;
+        }
 
         if (cpu_graph.edge_count > constant_comm::kMaxGraphEdgeCount) {
             spdlog::info("Input graph is too large! Process next graph ...");

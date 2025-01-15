@@ -339,8 +339,12 @@ void tc::approach::H_INDEX::gpu_run(INIReader &config, GPUGraph &gpu_graph, std:
     }
 
     // algorithm, dataset, iteration_count, avg compute time/s,
-    spdlog::get("H-INDEX_file_logger")
-        ->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "H-INDEX", gpu_graph.input_dir, counter[0], iteration_count, total_kernel_use / iteration_count);
+    auto logger = spdlog::get("H-INDEX_file_logger");
+    if (logger) {
+        logger->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "H-INDEX", gpu_graph.input_dir, counter[0], iteration_count, total_kernel_use / iteration_count);
+    } else {
+        spdlog::warn("Logger 'H-INDEX_file_logger' is not initialized.");
+    }
 
     spdlog::info("Iter {0}, avg kernel use {1:.6f} s", iteration_count, total_kernel_use / iteration_count);
     spdlog::info("Triangle count {:d}", counter[0]);

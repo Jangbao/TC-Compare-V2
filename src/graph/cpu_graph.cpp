@@ -22,23 +22,51 @@ CPUGraph::CPUGraph(string jsonfile) {
     vertex_count = fsize(begin_file) / sizeof(index_t) - 1;
     edge_count = fsize(adj_file) / sizeof(vertex_t);
     has_edge_list = false;
+    if (vertex_count == -1 || edge_count == -1) {
+        spdlog::error("offset file or edge list file is empty");
+        return;
+    }
 
     spdlog::info("Load graph from disk to host, input dir is: {}", input_dir);
     spdlog::info("Graph vertices: {0}, edges: {1}, avg degrees: {2}", vertex_count, edge_count, (float)edge_count * 2 / vertex_count);
 
     FILE* pFile = fopen(src_file, "rb");
+    if (!pFile) {
+        spdlog::error("Unable to open file: {}", src_file);
+        return;
+    }
     src_list = (vertex_t*)malloc(fsize(src_file));
-    size_t size = fread(src_list, sizeof(vertex_t), edge_count, pFile);
+    if (fread(src_list, sizeof(vertex_t), edge_count, pFile) != edge_count) {
+        spdlog::error("Error reading file: {}", src_file);
+        fclose(pFile);
+        return;
+    }
     fclose(pFile);
 
     FILE* pFile1 = fopen(adj_file, "rb");
+    if (!pFile1) {
+        spdlog::error("Unable to open file: {}", adj_file);
+        return;
+    }
     adj_list = (vertex_t*)malloc(fsize(adj_file));
-    size = fread(adj_list, sizeof(vertex_t), edge_count, pFile1);
+    if (fread(adj_list, sizeof(vertex_t), edge_count, pFile1) != edge_count) {
+        spdlog::error("Error reading file: {}", adj_file);
+        fclose(pFile1);
+        return;
+    }
     fclose(pFile1);
 
     FILE* pFile3 = fopen(begin_file, "rb");
+    if (!pFile3) {
+        spdlog::error("Unable to open file: {}", begin_file);
+        return;
+    }
     beg_pos = (index_t*)malloc(fsize(begin_file));
-    size = fread(beg_pos, sizeof(index_t), vertex_count + 1, pFile3);
+    if (fread(beg_pos, sizeof(index_t), vertex_count + 1, pFile3) != vertex_count + 1) {
+        spdlog::error("Error reading file: {}", begin_file);
+        fclose(pFile3);
+        return;
+    }
     fclose(pFile3);
 
     for (int i = 0; i < constant_comm::kPrintArrNum; i++) {

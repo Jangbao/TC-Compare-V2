@@ -274,8 +274,12 @@ void tc::approach::Hu::gpu_run(INIReader &config, GPUGraph &gpu_graph, std::stri
     }
 
     // algorithm, dataset, iteration_count, avg compute time/s,
-    spdlog::get("Hu_file_logger")
-        ->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "Hu", gpu_graph.input_dir, triangleCount, iteration_count, total_kernel_use / iteration_count);
+    auto logger = spdlog::get("Hu_file_logger");
+    if (logger) {
+        logger->info("{0}\t{1}\t{2}\t{3}\t{4:.6f}", "Hu", gpu_graph.input_dir, triangleCount, iteration_count, total_kernel_use / iteration_count);
+    } else {
+        spdlog::warn("Logger 'Hu_file_logger' is not initialized.");
+    }
 
     spdlog::info("Iter {0}, avg kernel use {1:.6f} s", iteration_count, total_kernel_use / iteration_count);
     spdlog::info("Triangle count {:d}", triangleCount);
