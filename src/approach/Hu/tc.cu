@@ -246,8 +246,12 @@ void tc::approach::Hu::gpu_run(INIReader &config, GPUGraph &gpu_graph, std::stri
     double t_end = wtime();
 
     // algorithm, dataset, iterations, avg compute time/s,
-    spdlog::get("Hu_preprocessing_file_logger")
-        ->info("{0}\t{1}\t{2}\t{3:.6f}", "Hu", gpu_graph.input_dir, iterations, (t_end - t_start) / iterations);
+    auto preprocessing_logger = spdlog::get("Hu_preprocessing_file_logger");
+    if (preprocessing_logger) {
+        preprocessing_logger->info("{0}\t{1}\t{2}\t{3:.6f}", "Hu", gpu_graph.input_dir, iterations, (t_end - t_start) / iterations);
+    } else {
+        spdlog::warn("Logger 'Hu_preprocessing_file_logger' is not initialized.");
+    }
 
     long int *d_sum;
     HRR(cudaMalloc(&d_sum, sizeof(long int) * maxWarpPerGrid));
